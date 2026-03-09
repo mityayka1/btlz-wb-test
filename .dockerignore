@@ -4,3 +4,6 @@ node_modules
 .sql
 .idea
 dist
+.env
+.git
+credentials

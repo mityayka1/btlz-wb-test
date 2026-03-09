@@ -1,4 +1,3 @@
-# your node version
 FROM node:20-alpine AS deps-prod
 
 WORKDIR /app
@@ -19,6 +18,10 @@ FROM node:20-alpine AS prod
 
 WORKDIR /app
 
-COPY --from=build /app/package*.json .
-COPY --from=deps-prod /app/node_modules ./node_modules
-COPY --from=build /app/dist ./dist
+COPY --from=build --chown=node:node /app/package*.json .
+COPY --from=deps-prod --chown=node:node /app/node_modules ./node_modules
+COPY --from=build --chown=node:node /app/dist ./dist
+
+USER node
+
+CMD ["node", "dist/app.js"]

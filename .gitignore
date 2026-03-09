@@ -2,3 +2,7 @@ node_modules
 .local
 .env
 dist
+credentials/*.json
+!credentials/.gitkeep
+tsconfig.tsbuildinfo
+.vscode/
